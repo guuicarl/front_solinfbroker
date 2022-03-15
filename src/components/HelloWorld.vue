@@ -39,6 +39,7 @@
       </header>
       <div class="p-5">
         <table class="min-w-full divide-y divide-gray-200">
+          <caption></caption>
           <thead class="bg-gray-50">
             <tr>
               <th
@@ -122,7 +123,7 @@
                       class="text-sm font-medium text-gray-900"
                       v-if="this.$root.authenticated"
                     >
-                      {{ stock.stock_name }}
+                      {{ stock.stockName }}
                     </div>
                   </div>
                 </div>
@@ -133,7 +134,7 @@
                   v-if="this.$root.authenticated"
                 >
                   {{
-                    stock.bid_min.toLocaleString("pt-br", {
+                    stock.bidMin.toLocaleString("pt-br", {
                       style: "currency",
                       currency: "BRL",
                     })
@@ -143,7 +144,7 @@
               <td class="px-6 py-4 whitespace-nowrap">
                 <span class="text-sm text-gray-900">
                   {{
-                    stock.bid_max.toLocaleString("pt-br", {
+                    stock.bidMax.toLocaleString("pt-br", {
                       style: "currency",
                       currency: "BRL",
                     })
@@ -152,7 +153,7 @@
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {{
-                  stock.ask_min.toLocaleString("pt-br", {
+                  stock.askMin.toLocaleString("pt-br", {
                     style: "currency",
                     currency: "BRL",
                   })
@@ -160,7 +161,7 @@
               </td>
               <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                 {{
-                  stock.ask_max.toLocaleString("pt-br", {
+                  stock.askMax.toLocaleString("pt-br", {
                     style: "currency",
                     currency: "BRL",
                   })
@@ -188,6 +189,7 @@
       </header>
       <div class="p-5">
         <table class="min-w-full divide-y divide-gray-200">
+          <caption></caption>
           <thead class="bg-gray-50">
             <tr>
               <th

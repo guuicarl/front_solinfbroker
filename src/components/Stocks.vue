@@ -33,6 +33,7 @@
       </header>
       <div class="p-5">
         <table class="min-w-full divide-y divide-gray-200">
+          <caption></caption>
           <thead class="bg-gray-50">
             <tr>
               <th
@@ -109,52 +110,52 @@
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
             <tr v-for="stock in stocks" :key="stock">
-              <td class="px-6 py-4 whitespace-nowrap" v-if="stock.ask_min != null && stock.bid_min != null">
+              <td class="px-6 py-4 whitespace-nowrap" v-if="stock.askMin != null && stock.bidMin != null">
                 <div class="flex items-center">
                   <div class="ml-4">
                     <div
                       class="text-sm font-medium text-gray-900"
                       v-if="this.$root.authenticated"
                     >
-                      {{ stock.stock_name }}
+                      {{ stock.stockName }}
                     </div>
                   </div>
                 </div>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap " v-if="stock.ask_min != null && stock.bid_min != null">
+              <td class="px-6 py-4 whitespace-nowrap " v-if="stock.askMin != null && stock.bidMin != null">
                 <div
                   class="text-sm text-gray-900"
                   v-if="this.$root.authenticated"
                 >
                   {{
-                    stock.bid_min.toLocaleString("pt-br", {
+                    stock.bidMin.toLocaleString("pt-br", {
                   style: "currency",
                   currency: "BRL",
                 })
                   }}
                 </div>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap" v-if="stock.ask_min != null && stock.bid_min != null">
+              <td class="px-6 py-4 whitespace-nowrap" v-if="stock.askMin != null && stock.bidMin != null">
                 <span class="text-sm text-gray-900">
                   {{
-                    stock.bid_max.toLocaleString("pt-br", {
+                    stock.bidMax.toLocaleString("pt-br", {
                   style: "currency",
                   currency: "BRL",
                 })
                   }}
                 </span>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-if="stock.ask_min != null && stock.bid_min != null">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-if="stock.askMin != null && stock.bidMin != null">
                 {{
-                  stock.ask_min.toLocaleString("pt-br", {
+                  stock.askMin.toLocaleString("pt-br", {
                   style: "currency",
                   currency: "BRL",
                 })
                 }}
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-if="stock.ask_min != null && stock.bid_min != null">
+              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-if="stock.askMin != null && stock.bidMin != null">
                 {{
-                  stock.ask_max.toLocaleString("pt-br", {
+                  stock.askMax.toLocaleString("pt-br", {
                   style: "currency",
                   currency: "BRL",
                 })

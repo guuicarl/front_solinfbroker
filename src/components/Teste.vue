@@ -19,7 +19,6 @@
       <div class="p-6">
         <div class="mt-20 sm:mt-0">
           <div class="mt-5 md:mt-0 md:col-span-3">
-            <!-- <form @submit.prevent="criarOrdem()"> -->
               <div class="px-4 py-5 bg-white sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
                   <div class="col-span-6">
@@ -51,7 +50,7 @@
                       @click="getMoeda"
                     >
                       <option selected>---- Selecione uma stock ----</option>
-                      <option v-for="stock in stocksName" :key="stock">{{stock.stock_name}}</option>
+                      <option v-for="stock in stocksName" :key="stock">{{stock.stockName}}</option>
                     </select>
                   </div>
 
@@ -193,7 +192,6 @@
                   CRIAR ORDEM
                 </button>
               </div>
-              <!-- </form> -->
           </div>
         </div>
       </div>
@@ -296,10 +294,9 @@ export default {
       if (this.$root.authenticated) {
         this.claims = await this.$auth.getUser();
         let accessToken = this.$auth.getAccessToken();
-        // if(this.volume * this.bid <= this.dinheiro){
         try {
           await axios.post(`http://localhost:8082/orders`, 
-          {idUser: this.id, idStock: this.teste[0].id, stockSymbol: this.teste[0].stock_symbol, stockName: this.name, volume: this.volume, price: this.bid, type: this.type, status: 1, remainingValue: this.volume},
+          {idUser: this.id, idStock: this.teste[0].id, stockSymbol: this.teste[0].stockSymbol, stockName: this.name, volume: this.volume, price: this.bid, type: this.type, status: 1, remainingValue: this.volume},
           {
             headers: { Authorization: "Bearer " + accessToken },
           })

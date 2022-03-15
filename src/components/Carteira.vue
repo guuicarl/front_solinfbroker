@@ -383,10 +383,10 @@ export default {
           let response = await axios.get(`http://localhost:8085/${this.teste}`, {
             headers: { Authorization: "Bearer " + accessToken },
           });
-          this.ask_max = response.data[0].ask_max.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
-          this.ask_min = response.data[0].ask_min.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
-          this.bid_min = response.data[0].bid_min.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
-          this.bid_max = response.data[0].bid_max.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+          this.ask_max = response.data[0].askMax.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+          this.ask_min = response.data[0].askMin.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+          this.bid_min = response.data[0].bidMin.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
+          this.bid_max = response.data[0].bidMax.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
           this.stock = response.data
           console.log('aaaaqqqqqqqqqqqq')
           console.log("id: " + this.id + " nome da stoccccck " + this.teste) 
@@ -394,7 +394,7 @@ export default {
           this.stock = `${error}`;
         }
       }
-      this.teste = this.walletUser[0].volume * this.stock[0].ask_min
+      this.teste = this.walletUser[0].volume * this.stock[0].askMin
       this.valor = this.teste.toLocaleString('pt-br',{style: 'currency', currency: 'BRL'})
     } else {
       this.erro = true

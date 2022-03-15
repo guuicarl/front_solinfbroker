@@ -17,7 +17,6 @@
       <div class="">
         <div class="mt-20 sm:mt-0">
           <div class="mt-5 md:mt-0 md:col-span-3">
-            <!-- <form @submit.prevent="criarOrdem()"> -->
               <div class="px-4 py-5 bg-white sm:p-6">
                 <div class="grid grid-cols-6 gap-6">
                   <div class="col-span-6">
@@ -48,14 +47,12 @@
                       v-model="name"
                     >
                       <option selected>---- Selecione uma stock ----</option>
-                      <option v-for="stock in stocksName" :key="stock">{{stock.stock_name}}</option>
+                      <option v-for="stock in stocksName" :key="stock">{{stock.stockName}}</option>
                     </select>
                     <button class="py-5 px-5 bg-gray-700 hover:text-gray-400 text-gray-100 rounded transition duration-300 no-underline" @click="setup">Buscar</button></div>
                   </div>
                 </div>
               </div>
-
-              <!-- </form> -->
           </div>
         </div>
       </div>
@@ -63,7 +60,7 @@
     <DxChart
       id="zoomedChart"
       :data-source="dataSource"
-      :title="this.teste[0].stock_name + ' stock prices'"
+      :title="this.teste[0].stockName + ' stock prices'"
     >
       <DxSeries
         type="candlestick"
@@ -71,7 +68,7 @@
         high-value-field="high"
         low-value-field="low"
         close-value-field="fechado"
-        argument-field="created_on"
+        argument-field="created"
       >
         <DxAggregation :enabled="true"/>
       </DxSeries>
@@ -98,7 +95,7 @@
         <DxRsSeries
           type="line"
           value-field="aberto"
-          argument-field="created_on"
+          argument-field="created"
         >
           <DxRsAggregation :enabled="true"/>
         </DxRsSeries>
@@ -189,7 +186,7 @@ export default {
             headers: { Authorization: "Bearer " + accessToken },
           });
           this.teste = response.data;
-          console.log("id: " + this.teste[0].id + " Symbol: " + this.teste[0].stock_symbol + " Nome: " + this.name + " Volume: " + this.volume  + " Preço: " + this.bid, "tipo: " + this.type) 
+          console.log("id: " + this.teste[0].id + " Symbol: " + this.teste[0].stockSymbol + " Nome: " + this.name + " Volume: " + this.volume  + " Preço: " + this.bid, "tipo: " + this.type) 
         } catch (error) {
           this.walletUser = `${error}`;
         }
