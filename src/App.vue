@@ -25,7 +25,7 @@
         <!-- secondary nav -->
         <div class="flex items-center space-x-1 mr-9">
           <a href="/" class="py-5 px-3 text-gray-100 hover:text-gray-400 no-underline" v-if="authenticated">Dashboard</a>
-          <a href="/teste" class="py-5 px-3 text-gray-100 hover:text-gray-400 no-underline" v-if="authenticated">Compra/Venda</a>
+          <a href="/ordens" class="py-5 px-3 text-gray-100 hover:text-gray-400 no-underline" v-if="authenticated">Compra/Venda</a>
           <a href="/carteira" class="py-5 px-3 text-gray-100 hover:text-gray-400 no-underline" v-if="authenticated">Carteira</a>
           <a href="" class="py-3 px-3 bg-yellow-400 hover:bg-yellow-300 text-gray-100 hover:text-yellow-800 rounded transition duration-300 no-underline" v-on:click="logout()" v-if="authenticated">Logout</a>
         </div>

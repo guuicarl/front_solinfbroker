@@ -1,10 +1,10 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { LoginCallback, navigationGuard } from '@okta/okta-vue'
 import LoginComponent from '@/components/Login'
-import HomeComponent from '@/components/HelloWorld'
-import Teste from '@/components/Teste'
+import Dashboard from '@/components/Dashboard'
+import Ordens from '@/components/Ordens'
 import Carteira from '@/components/Carteira'
-import About from '@/views/About'
+import Grafico from '@/views/Grafico'
 import Stocks from '@/components/Stocks'
 
 const router = createRouter({
@@ -12,7 +12,7 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: HomeComponent,
+      component: Dashboard,
       meta: {
         requiresAuth: true
       }
@@ -26,8 +26,8 @@ const router = createRouter({
       component: LoginCallback
     },
     {
-      path: '/teste',
-      component: Teste,
+      path: '/ordens',
+      component: Ordens,
       meta: {
         requiresAuth: true
       }
@@ -40,8 +40,8 @@ const router = createRouter({
       }
     },
     {
-      path: '/about',
-      component: About,
+      path: '/grafico',
+      component: Grafico,
       meta: {
         requiresAuth: true
       }

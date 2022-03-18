@@ -49,7 +49,7 @@
                       <option selected>---- Selecione uma stock ----</option>
                       <option v-for="stock in stocksName" :key="stock">{{stock.stockName}}</option>
                     </select>
-                    <button class="py-5 px-5 bg-gray-700 hover:text-gray-400 text-gray-100 rounded transition duration-300 no-underline" @click="setup">Buscar</button></div>
+                    <button class="py-5 px-5 bg-gray-700 hover:text-gray-400 text-gray-100 rounded transition duration-300 no-underline" @click="buscar">Buscar</button></div>
                   </div>
                 </div>
               </div>
@@ -60,7 +60,7 @@
     <DxChart
       id="zoomedChart"
       :data-source="dataSource"
-      :title="this.teste[0].stockName + ' stock prices'"
+      :title="this.stock[0].stockName + ' stock prices'"
     >
       <DxSeries
         type="candlestick"
@@ -177,7 +177,7 @@ export default {
   },
 
   methods: {
-     async setup() {
+     async buscar() {
       if (this.$root.authenticated) {
         this.claims = await this.$auth.getUser();
         let accessToken = this.$auth.getAccessToken();
@@ -185,21 +185,19 @@ export default {
           let response = await axios.get(`http://localhost:8085/${this.name}`, {
             headers: { Authorization: "Bearer " + accessToken },
           });
-          this.teste = response.data;
-          console.log("id: " + this.teste[0].id + " Symbol: " + this.teste[0].stockSymbol + " Nome: " + this.name + " Volume: " + this.volume  + " Preço: " + this.bid, "tipo: " + this.type) 
+          this.stock = response.data;
         } catch (error) {
-          this.walletUser = `${error}`;
+          this.stock = `${error}`;
         }
         try {
         let response = await axios.get(
-          `http://localhost:8085/historico/${this.teste[0].id}`,
+          `http://localhost:8085/historico/${this.stock[0].id}`,
 
           {
             headers: { Authorization: "Bearer " + accessToken },
           }
         );
         this.dataSource = response.data
-        console.log(this.dataSource)
       } catch (error) {
         this.id = `${error}`;
       }  
@@ -215,7 +213,6 @@ export default {
             headers: { Authorization: "Bearer " + accessToken },
           });
           this.stocksName = response.data;
-          console.log('teste')
         } catch (error) {
           this.stocksName = `${error}`;
         }
@@ -226,17 +223,3 @@ export default {
   
 };
 </script>
-<style>
-/* #chart-demo {
-  height: 450px;
-}
-
-#zoomedChart {
-  height: 315px;
-  margin: 0 0 15px;
-}
-
-#chart-demo > div:not(#zoomedChart) {
-  height: 12px;
-} */
-</style>

@@ -33,8 +33,10 @@
       >
         COTAÇÕES
         <div class="flex flex-col">
-        <a href="/about" class="text-xs hover:text-gray-300">Ver grafico de alterações</a>
-        <a href="/stocks" class="text-xs hover:text-gray-300">Listar todas</a>
+          <a href="/grafico" class="text-xs hover:text-gray-300"
+            >Ver grafico de alterações</a
+          >
+          <a href="/stocks" class="text-xs hover:text-gray-300">Listar todas</a>
         </div>
       </header>
       <div class="p-5">
@@ -274,7 +276,7 @@
                   tracking-wider
                 "
               >
-                Abrir/Fechar ordem
+                Fechar ordem
               </th>
             </tr>
           </thead>
@@ -310,64 +312,123 @@
                   }}
                 </span>
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-if="order.type ==0">
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                v-if="order.type == 0"
+              >
                 Compra
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-if="order.type ==1">
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                v-if="order.type == 1"
+              >
                 Venda
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-if="order.status == 1">
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                v-if="order.status == 1"
+              >
                 Aberto
               </td>
-              <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" v-if="order.status == 2">
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+                v-if="order.status == 2"
+              >
                 Fechado
               </td>
-              <td v-if="order.status == 1" class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex">
+              <td
+                v-if="order.status == 1"
+                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500 flex"
+              >
                 <button>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  class="h-5 w-5 text-red-600"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  @click="fechar(order.id)"
-                >
-                  <path
-                    fill-rule="evenodd"
-                    d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
-                    clip-rule="evenodd"
-                  />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5 text-red-600"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    @click="fechar(order.id)"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
                 </button>
                 Fechar
               </td>
-              <td v-if="order.status ==2 " class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+              <td
+                v-if="order.status == 2"
+                class="px-6 py-4 whitespace-nowrap text-sm text-gray-500"
+              >
                 <h1>Ordem finalizada!</h1>
               </td>
             </tr>
           </tbody>
         </table>
       </div>
-          <div class="flex flex-col items-center">
-  <!-- Help text -->
-  <span class="text-sm text-gray-700 dark:text-gray-400">
-      Showing <span class="font-semibold text-gray-900 dark:text-white">{{this.orders.number + 1}}</span> page of <span class="font-semibold text-gray-900 dark:text-white">{{this.orders.totalPages}}</span> Pages
-  </span>
-  <!-- Buttons -->
-  <div class="inline-flex mt-2 xs:mt-0">
-      <button v-if="this.page != 0 " @click="prev" class="py-2 px-4 text-sm font-medium text-white bg-gray-800 rounded-l hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-          Prev
-      </button>
-      <button v-if="this.page < this.orders.totalPages - 1" @click="next" class="py-2 px-4 text-sm font-medium text-white bg-gray-800 rounded-r border-0 border-l border-gray-700 hover:bg-gray-900 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-          Next
-      </button>
-  </div>
-</div>
+      <div class="flex flex-col items-center">
+        <!-- Help text -->
+        <span class="text-sm text-gray-700 dark:text-gray-400">
+          Showing
+          <span class="font-semibold text-gray-900 dark:text-white">{{
+            this.orders.number + 1
+          }}</span>
+          page of
+          <span class="font-semibold text-gray-900 dark:text-white">{{
+            this.orders.totalPages
+          }}</span>
+          Pages
+        </span>
+        <!-- Buttons -->
+        <div class="inline-flex mt-2 xs:mt-0">
+          <button
+            v-if="this.page != 0"
+            @click="prev"
+            class="
+              py-2
+              px-4
+              text-sm
+              font-medium
+              text-white
+              bg-gray-800
+              rounded-l
+              hover:bg-gray-900
+              dark:bg-gray-800
+              dark:border-gray-700
+              dark:text-gray-400
+              dark:hover:bg-gray-700
+              dark:hover:text-white
+            "
+          >
+            Prev
+          </button>
+          <button
+            v-if="this.page < this.orders.totalPages - 1"
+            @click="next"
+            class="
+              py-2
+              px-4
+              text-sm
+              font-medium
+              text-white
+              bg-gray-800
+              rounded-r
+              border-0 border-l border-gray-700
+              hover:bg-gray-900
+              dark:bg-gray-800
+              dark:border-gray-700
+              dark:text-gray-400
+              dark:hover:bg-gray-700
+              dark:hover:text-white
+            "
+          >
+            Next
+          </button>
+        </div>
+      </div>
     </div>
-    
   </div>
-
-
-
 </template>
 
 <script>
@@ -384,7 +445,6 @@ export default {
       stocksName: [],
       status: true,
       id: 0,
-      welcome: "",
       users: [],
       stocks: [],
       orders: [],
@@ -403,13 +463,13 @@ export default {
     this.novo();
   },
   methods: {
-    async next (){
-      this.page = this.page + 1
-      this.user()
+    next() {
+      this.page = this.page + 1;
+      this.user();
     },
-    async prev (){
-      this.page = this.page - 1
-      this.user()
+    prev() {
+      this.page = this.page - 1;
+      this.user();
     },
     async novo() {
       const nova = (stock) => {
@@ -438,16 +498,7 @@ export default {
         this.claims = await this.$auth.getUser();
         let accessToken = this.$auth.getAccessToken();
         console.log(`Authorization: Bearer ${accessToken}`);
-        console.log("testando");
         console.log(this.claims.name);
-        try {
-          let response = await axios.get("http://localhost:8082/", {
-            headers: { Authorization: "Bearer " + accessToken },
-          });
-          this.welcome = response.data;
-        } catch (error) {
-          this.welcome = `${error}`;
-        }
         try {
           let response = await axios.get("http://localhost:8085/updated", {
             headers: { Authorization: "Bearer " + accessToken },
@@ -475,29 +526,27 @@ export default {
         this.users = `${error}`;
       }
       try {
-        let response = await axios.get(`http://localhost:8082/uo/${this.id}?pageSize=5&pageNumber=${this.page}`, {
-          headers: { Authorization: "Bearer " + accessToken },
-        });
+        let response = await axios.get(
+          `http://localhost:8082/uo/${this.id}?pageSize=5&pageNumber=${this.page}`,
+          {
+            headers: { Authorization: "Bearer " + accessToken },
+          }
+        );
         this.orders = response.data;
-        console.log(this.orders)
-        console.log((this.page + 1))
       } catch (error) {
         this.orders = `${error}`;
       }
     },
-    async fechar(id){
+    async fechar(id) {
       let accessToken = this.$auth.getAccessToken();
-        await axios.patch(`http://localhost:8082/alterar/${id}`, {status: 2},{
+      await axios.patch(
+        `http://localhost:8082/alterar/${id}`,
+        { status: 2 },
+        {
           headers: { Authorization: "Bearer " + accessToken },
-        });
-        this.user()
-    },
-    async abrir(id){
-      let accessToken = this.$auth.getAccessToken();
-        await axios.patch(`http://localhost:8082/alterar/${id}`, {status: 1},{
-          headers: { Authorization: "Bearer " + accessToken },
-        });
-        this.user()
+        }
+      );
+      this.user();
     },
   },
 };

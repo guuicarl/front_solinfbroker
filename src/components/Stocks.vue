@@ -190,7 +190,7 @@ export default {
         console.log("testando");
         console.log(this.claims.name);
         try {
-          let response = await axios.get("http://localhost:8085/stocks", {
+          let response = await axios.get("http://apistocks:8085/stocks", {
             headers: { Authorization: "Bearer " + accessToken },
           });
           this.stocks = response.data;
