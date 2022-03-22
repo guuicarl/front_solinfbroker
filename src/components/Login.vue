@@ -1,6 +1,7 @@
 <template>
-  <div class="login">
+  <div class="login flex justify-center">
     <div id="okta-signin-container"></div>
+    <div><img src="../assets/images/Refund-amico.png" width="700" class="ml-24" alt=""></div>
   </div>
 </template>
 

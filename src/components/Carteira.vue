@@ -1,7 +1,8 @@
 <template>
   <div class="py-40 flex justify-center mb-14" v-if="this.$root.authenticated">
+    <img src="../assets/images/Investing-cuate.png" width="765" alt="money" class="mr-36 -mt-40">
     <!-- card vem aqui -->
-    <div class="bg-white rounded-lg shadow-2x1 w-1/2">
+    <div class="bg-white rounded-lg shadow-2x1 w-1/2 flex-initial h-1/2">
       <!-- header -->
       <header
         class="
@@ -25,6 +26,7 @@
                   <label
                     for="stocks"
                     class="block text-sm font-medium text-gray-700"
+                    v-if="filtroStocks"
                     >Stock Name:
                   </label>
                   <select
@@ -50,7 +52,7 @@
                   >
                     <option selected>---- Selecione uma stock ----</option>
                     <option
-                      v-for="wallet in wallets"
+                      v-for="wallet in filtroStocks"
                       :key="wallet"
                       v-on:click="getMoeda()"
                     >
@@ -351,6 +353,11 @@ export default {
   created() {
     this.idUsuario();
   },
+  computed: {
+    filtroStocks: function(){
+      return this.wallets.filter(i => i.volume > 0)
+    }
+  },
   methods: {
     async idUsuario() {
       if (this.$root.authenticated) {
@@ -376,6 +383,7 @@ export default {
             }
           );
           this.wallets = response.data;
+          console.log(this.wallets)
         } catch (error) {
           this.wallets = `${error}`;
         }

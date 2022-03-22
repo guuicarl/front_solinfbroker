@@ -1,5 +1,5 @@
 <template>
-  <div class="py-40 md:w-auto">
+  <div class="py-40 md:w-auto flex">
     <!-- card vem aqui -->
     <div
       class="
@@ -10,6 +10,7 @@
         justify-center
         ml-auto
         mr-auto
+        h-1/2
       "
     >
       <!-- header -->
@@ -258,6 +259,7 @@
         </span>
       </div>
     </div>
+    <img src="../assets/images/Consulting-amico.png" width="700" alt="" class="-mt-24">
   </div>
 </template>
 

@@ -527,7 +527,7 @@ export default {
       }
       try {
         let response = await axios.get(
-          `http://localhost:8082/uo/${this.id}?pageSize=5&pageNumber=${this.page}`,
+          `http://localhost:8082/uo/${this.id}?pageSize=8&pageNumber=${this.page}`,
           {
             headers: { Authorization: "Bearer " + accessToken },
           }
